@@ -50,10 +50,48 @@ Some general patterns noted from the experiments:
 - Undersampling reduces dataset size and can remove useful information, which sometimes harms performance.
 - Random Forest and XGBoost usually perform better on structured datasets and appear to benefit the most from balanced training sets.
 - Cleaning techniques like Tomek Links help reduce overlapping noise around decision boundaries.
+## Results
+
+After balancing the dataset using SMOTE and applying five different sampling techniques on the training data, each sampler was tested with five models. The accuracy table below summarizes the performance:
+
+             SMOTE    ROS     RUS     NEAR    TOMEK
+LOGR        91.62   91.62   91.62   91.62   91.62
+KNN         85.60   85.60   85.60   85.60   85.60
+DTREE       97.12   97.64   97.64   97.91   97.38
+FOREST      98.95   98.69   98.69   98.69   98.69
+XGB         98.43   98.43   98.43   98.43   98.43
+
+### Best sampling technique per model
+- Logistic Regression → SMOTE  
+- KNN → SMOTE  
+- Decision Tree → NearMiss  
+- Random Forest → SMOTE  
+- XGBoost → SMOTE  
+
+### Best model per sampling technique
+- SMOTE → Random Forest  
+- ROS → Random Forest  
+- RUS → Random Forest  
+- NearMiss → Random Forest  
+- Tomek Links → Random Forest  
+
+### Best performing combination
+- Model: Random Forest  
+- Sampling: SMOTE  
+- Accuracy: 98.95%  
+
+---
+
+## Discussion of Results
+
+From the experiment, Random Forest consistently performed the best across all sampling techniques, indicating that it is well-suited for the structure of this dataset. SMOTE emerged as the best sampling strategy for most models, likely because oversampling retains information compared to undersampling, which discards data.  
+
+NearMiss showed strong performance only for Decision Tree, suggesting that boundary-focused undersampling can occasionally help simpler tree models learn more distinctive patterns. Tomek Links performed similarly to undersampling but did not surpass SMOTE.
+
+Overall, handling class imbalance before modeling significantly improved results. Without balancing, the minority fraud class would be mostly ignored by the classifiers, even if the raw accuracy appeared high.
+
+---
 
 ## Conclusion
-Properly addressing class imbalance is crucial in fraud detection. Balancing the dataset early and then experimenting with sampling methods gives a better understanding of how different models behave under different data distributions. Without handling imbalance, accuracy alone becomes misleading and makes fraud detection appear easier than it actually is.
 
-## Tools and Libraries
-Python, scikit-learn, imbalanced-learn, XGBoost, pandas, numpy, matplotlib, seaborn
-
+Balancing the dataset followed by sampling-based experimentation provided a clearer picture of how different preprocessing strategies interact with different models. Random Forest combined with SMOTE produced the highest accuracy and represents the most effective combination for this dataset based on the metrics used.
