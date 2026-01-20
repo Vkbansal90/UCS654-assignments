@@ -53,9 +53,6 @@ Some general patterns noted from the experiments:
 ## Results
 
 After balancing the dataset using SMOTE and applying five different sampling techniques on the training data, each sampler was tested with five models. The accuracy table below summarizes the performance:
-## Results
-
-After applying the sampling techniques to the balanced dataset and evaluating five machine learning models, the following accuracy values were obtained:
 
 ### Accuracy Table (in %)
 
