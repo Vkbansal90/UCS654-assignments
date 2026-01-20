@@ -53,13 +53,31 @@ Some general patterns noted from the experiments:
 ## Results
 
 After balancing the dataset using SMOTE and applying five different sampling techniques on the training data, each sampler was tested with five models. The accuracy table below summarizes the performance:
+## Results
 
-             SMOTE    ROS     RUS     NEAR    TOMEK
-LOGR        91.62   91.62   91.62   91.62   91.62
-KNN         85.60   85.60   85.60   85.60   85.60
-DTREE       97.12   97.64   97.64   97.91   97.38
-FOREST      98.95   98.69   98.69   98.69   98.69
-XGB         98.43   98.43   98.43   98.43   98.43
+After applying the sampling techniques to the balanced dataset and evaluating five machine learning models, the following accuracy values were obtained:
+
+### Accuracy Table (in %)
+
+| Model | SMOTE | ROS | RUS | NEAR | TOMEK |
+|-------|-------|------|------|-------|--------|
+| Logistic Regression | 91.62 | 91.62 | 91.62 | 91.62 | 91.62 |
+| KNN | 85.60 | 85.60 | 85.60 | 85.60 | 85.60 |
+| Decision Tree | 97.12 | 97.64 | 97.64 | 97.91 | 97.38 |
+| Random Forest | **98.95** | 98.69 | 98.69 | 98.69 | 98.69 |
+| XGBoost | 98.43 | 98.43 | 98.43 | 98.43 | 98.43 |
+
+---
+
+### Best Sampling Technique per Model
+
+| Model | Best Sampling |
+|-------|---------------|
+| Logistic Regression | SMOTE |
+| KNN | SMOTE |
+| Decision Tree | NearMiss |
+| Random Forest | SMOTE |
+
 
 ### Best sampling technique per model
 - Logistic Regression → SMOTE  
